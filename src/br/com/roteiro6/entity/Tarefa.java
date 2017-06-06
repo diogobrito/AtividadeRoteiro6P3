@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,8 +14,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
-@Table(name = "TAREFA", catalog = "DBTarefa")
+@Table(name = "TAREFA", catalog = "DBTarefas")
+
+@Cacheable
+@Cache(region="func", usage=CacheConcurrencyStrategy.READ_ONLY)
 public class Tarefa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
